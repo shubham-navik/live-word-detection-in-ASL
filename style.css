@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h1 {
+    margin-top: 20px;
+}
+
+video {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+#predictionsContainer {
+    margin-top: 20px;
+}
