@@ -30,16 +30,23 @@
         }
 
         async function startPredictions() {
-            const videoElement = document.getElementById('videoElement');
-            const predictionsContainer = document.getElementById('predictionsContainer');
+    const videoElement = document.getElementById('videoElement');
+    const predictionsContainer = document.getElementById('predictionsContainer');
 
-            predictionInterval = setInterval(async () => {
-                if (!stream) return; // Stop sending requests if the camera stream is not active
-                const frameData = await captureFrame(videoElement);
-                const predictions = await sendFrameForPrediction(frameData);
-                predictionsContainer.innerHTML += JSON.stringify(predictions.prediction); // Append prediction with line break
-            }, 1000); // Adjust the interval as needed
+    predictionInterval = setInterval(async () => {
+        if (!stream) return; // Stop sending requests if the camera stream is not active
+        const frameData = await captureFrame(videoElement);
+        const predictions = await sendFrameForPrediction(frameData);
+
+        // Check if prediction is a space character
+        if (predictions.prediction === ' ') {
+            predictionsContainer.innerHTML += ' '; // Add any handling you want for space character
+        } else {
+            predictionsContainer.innerHTML += predictions.prediction; // Append prediction
         }
+    }, 2000); // Adjust the interval as needed
+}
+
 
         function pausePredictions() {
             clearInterval(predictionInterval);
